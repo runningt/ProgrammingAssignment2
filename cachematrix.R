@@ -1,8 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Cache based counting inversion of matrices
 
 ## makeCacheMatrix:
-## 
+## Creates a "cache compliant" version of matrix that can be used by cacheSolve function
+## Parameters: x - input matrix (should be invertable)
+## Returns: list of setters and getters of cache compliant matrix
 makeCacheMatrix <- function(x = matrix()) {
   s <- NULL
   set <- function(y) {
@@ -16,12 +17,14 @@ makeCacheMatrix <- function(x = matrix()) {
        setsolve = setsolve,
        getsolve = getsolve)
 }
-
-
-## Write a short comment describing this function
+##cacheSolve:
+## This function computes the inverse of "cache compliant" matrix returned by makeCacheMatrix 
+## If the inverse has already been calculated (and the matrix has not changed),
+## retrieves the inverse from the cache
+## Parameters: x - "cache compliant" matrix returned by makeCacheMatrix
+## Returns: inverse of x
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
   res <- x$getsolve()
   if(!is.null(res)) {
     message("getting cached data")
