@@ -17,13 +17,13 @@ makeCacheMatrix <- function(x = matrix()) {
        setsolve = setsolve,
        getsolve = getsolve)
 }
+
 ##cacheSolve:
 ## This function computes the inverse of "cache compliant" matrix returned by makeCacheMatrix 
 ## If the inverse has already been calculated (and the matrix has not changed),
 ## retrieves the inverse from the cache
 ## Parameters: x - "cache compliant" matrix returned by makeCacheMatrix
 ## Returns: inverse of x
-
 cacheSolve <- function(x, ...) {
   res <- x$getsolve()
   if(!is.null(res)) {
